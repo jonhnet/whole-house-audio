@@ -117,6 +117,22 @@ sudo systemctl enable /etc/bt-accepter-jonh/bt-discoverable-jonh.service
 sudo systemctl start bt-discoverable-jonh
 ```
 
+* Configure pulseaudio to forward to RTP.
+**IMPORTANT**: I added a destination_ip here, aiming the RTP hose at my
+audio server.
+```
+cat << __EOF__ > .config/pulse/default.pa
+.include /etc/pulse/default.pa
+load-module module-null-sink sink_name=rtp
+load-module module-rtp-send source=rtp.monitor destination_ip=10.110.0.3 port=1760
+load-module module-rtp-send source=rtp.monitor
+set-default-sink rtp
+__EOF__
+```
+------------------------------------------------------------------------------
+broke here
+------------------------------------------------------------------------------
+
 * Configure pulseaudio to not suspend sinks on idle.
 (I don't know why it thinks the sink is idle when running the way I'm running it; this started once I moved from a user slice to a system unit.
 
@@ -128,18 +144,6 @@ So how do we keep the logged in thing working?
 
 sudo 'echo exit-idle-time = -1 >> /etc/pulse/daemon.conf'
 
-* Configure pulseaudio to forward to RTP.
-*IMPORTANT*: I added a destination_ip here, aiming the RTP hose at my
-audio server.
-```
-cat << __EOF__ > .config/pulse/default.pa
-.include /etc/pulse/default.pa
-load-module module-null-sink sink_name=rtp
-load-module module-rtp-send source=rtp.monitor destination_ip=10.110.0.3 port=1760
-load-module module-rtp-send source=rtp.monitor
-set-default-sink rtp
-__EOF__
-```
 
 * Disable pi's user instance of pulseaudio, which isn't there when we're not logged in.
 ```
