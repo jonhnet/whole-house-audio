@@ -42,7 +42,9 @@ sudo hostnamectl set-hostname blueberry
 ```
 
 * Install pulseaudio & bluetooth packages.
+```
 sudo apt-get install -y --no-install-recommends bluez pulseaudio-module-bluetooth bluez-tools
+```
 
 * Create a service to automatically accept Bluetooth connections without needing to accept
 the PIN on the pi side.
@@ -91,6 +93,17 @@ sudo systemctl daemon-reload
 sudo systemctl start bt-discoverable-jonh
 sudo systemctl start bt-accepter-jonh
 ```
+
+* Configure pulseaudio to not suspend sinks on idle.
+(I don't know why it thinks the sink is idle when running the way I'm running it; this started once I moved from a user slice to a system unit.
+
+dayyum this is frustrating. I suspect we're battling the system as pi
+unit. This didn't happen before.
+So how do we keep the logged in thing working?
+
+* Configure pulseaudio to not exit on idle, since that closes Bluetooth connection.
+
+sudo 'echo exit-idle-time = -1 >> /etc/pulse/daemon.conf'
 
 * Configure pulseaudio to forward to RTP.
 *IMPORTANT*: I added a destination_ip here, aiming the RTP hose at my
@@ -166,9 +179,18 @@ sudo reboot -f
 
 * Pair to the newly-advertised bluetooth service and start playing.
 
-#### sources
+The End.
+
+#### debugging tools
 
 Debugging tools I met along the way:
+
+* At setup
+```
+apt install tcpdump vim
+sudo mkdir /root/.ssh/
+sudo cp /home/pi/.ssh/authorized_keys /root/.ssh/
+```
 
 * Is bluetooth discoverable?
 ```
@@ -180,6 +202,25 @@ hciconfig hci0 sspmode
 ```
 pactl list short sinks
 ```
+
+#### broken stuff
+
+* persistent-pulseaudio-jonh doesn't actually come up in working order after boot. Only clue is log message, but in this mode we don't see the c filename.
+```
+journalctl -u persistent-pulseaudio.service
+...
+Feb 06 06:02:42 blueberry pulseaudio[394]: connect() failed: Network is unreachable
+...
+```
+
+* Even when I get the thing working, it randomly suspends itself.
+
+* rtp listener on host is flaky as heck, needs restarts, needs ffmpeg process
+  to be manually killed.
+
+* bt-discoverable-jonh.service re-running every 5s forever is a hack and
+  a half, since I couldn't get the dependencies right for the discoverability
+  to stay put.
 
 #### sources
 * [bluez packages](https://www.instructables.com/Turn-your-Raspberry-Pi-into-a-Portable-Bluetooth-A/)
