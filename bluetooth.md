@@ -56,7 +56,31 @@ cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-pins.txt >/dev/null
 *                 *
 __EOF__
 
+cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-accepter-jonh.service > /dev/null
 
+[Unit]
+Description=Bluetooth accepter agent (jonh)
+After=bluetooth.service persistent-pulseaudio.service
+StartLimitIntervalSec=0
+
+[Service]
+RuntimeDirectory=bt-accepter-jonh
+User=root
+ExecStart=bt-agent -c DisplayOnly -p /etc/bt-accepter-jonh/bt-pins.txt
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+__EOF__
+
+sudo systemctl daemon-reload
+sudo systemctl enable /etc/bt-accepter-jonh/bt-accepter-jonh.service
+sudo systemctl start bt-accepter-jonh
+```
+
+* Create a service to keep the Bluetooth service in a discoverable state.
+```
 cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-accepter.sh > /dev/null
 #!/bin/bash
 # be sure bt is publicly discoverable
@@ -70,16 +94,17 @@ bt-agent -c DisplayOnly -p /etc/bt-accepter-jonh/bt-pins.txt
 __EOF__
 sudo chmod 755 /etc/bt-accepter-jonh/bt-accepter.sh
 
-cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-accepter-jonh.service > /dev/null
+cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-discoverable-jonh.service > /dev/null
 [Unit]
-Description=Bluetooth accepter agent (jonh)
+Description=Bluetooth discoverable agent (jonh)
 After=bluetooth.service persistent-pulseaudio.service
 StartLimitIntervalSec=0
+StartLimitBurst=5
 
 [Service]
-RuntimeDirectory=bt-accepter-jonh
+RuntimeDirectory=bt-discoverable-jonh
 User=root
-ExecStart=/etc/bt-accepter-jonh/bt-accepter.sh
+ExecStart=/etc/bt-accepter-jonh/bt-discoverable.sh
 Restart=always
 RestartSec=5
 
@@ -87,11 +112,9 @@ RestartSec=5
 WantedBy=default.target
 __EOF__
 
-sudo systemctl enable /etc/bt-accepter-jonh/bt-discoverable-jonh.service
-sudo systemctl enable /etc/bt-accepter-jonh/bt-accepter-jonh.service
 sudo systemctl daemon-reload
+sudo systemctl enable /etc/bt-accepter-jonh/bt-discoverable-jonh.service
 sudo systemctl start bt-discoverable-jonh
-sudo systemctl start bt-accepter-jonh
 ```
 
 * Configure pulseaudio to not suspend sinks on idle.
@@ -187,7 +210,7 @@ Debugging tools I met along the way:
 
 * At setup
 ```
-apt install tcpdump vim
+sudo apt install -y tcpdump vim
 sudo mkdir /root/.ssh/
 sudo cp /home/pi/.ssh/authorized_keys /root/.ssh/
 ```
