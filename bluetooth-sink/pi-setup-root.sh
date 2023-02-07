@@ -37,7 +37,7 @@ apt-get install -y --no-install-recommends bluez pulseaudio-module-bluetooth blu
 sudo apt install -y tcpdump vim lsof
 
 # Create a service to automatically accept Bluetooth connections without needing to accept the PIN on the pi side
-mkdir /etc/bt-accepter-jonh
+mkdir -p /etc/bt-accepter-jonh
 cp bt-accepter-jonh.service bt-pins.txt /etc/bt-accepter-jonh
 
 systemctl daemon-reload
