@@ -3,10 +3,10 @@
 # bail out if anything goes awry
 set -e
 
-. pi-setup-options.sh
+script_dir="$(dirname "$0")"
+cd ${script_dir}
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-cd ${SCRIPT_DIR}
+source pi-setup-options.sh
 
 
 hostnamectl set-hostname ${HOSTNAME}
