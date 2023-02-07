@@ -24,21 +24,21 @@ Here are the steps I took from blank SD card to a pi that acts as a bluetooth
 sudo ip link set wlan0 down
 ```
 
-* Bring the installation entirely up-to-date:
+* Install git
 ```
-sudo apt update && sudo apt -y upgrade
-```
-
-* Disable wifi permanently. At least on my pi3, Bluetooth and WiFi don't get along well enough,
-so I'm going to keep this thing just plugged into a convenient ethernet port.
-```
-sudo cp /boot/config.txt /boot/config.txt-bak
-awk '{print} /^\[all\]/ && !x { print "dtoverlay=disable-wifi"; x=1}' /boot/config.txt-bak |sudo tee /boot/config.txt > /dev/null
+sudo apt install git
 ```
 
-* Give the pi a hostname. I chose *blueberry*. This is how it will advertise itself via Bluetooth.
+* Fetch my installer thingydoo
 ```
-sudo hostnamectl set-hostname blueberry
+git clone https://github.com/jonhnet/whole-house-audio/
+```
+
+* Configure options in `whole-house-audio/bluetooth-sink/pi-setup-options.sh`
+
+* Execute the setup script
+```
+sh whole-house-audio/bluetooth-sink/pi-setup.sh
 ```
 
 * Install pulseaudio & bluetooth packages.
@@ -69,6 +69,7 @@ User=root
 ExecStart=bt-agent -c DisplayOnly -p /etc/bt-accepter-jonh/bt-pins.txt
 Restart=on-failure
 RestartSec=5
+KillSignal=9
 
 [Install]
 WantedBy=default.target
@@ -81,18 +82,14 @@ sudo systemctl start bt-accepter-jonh
 
 * Create a service to keep the Bluetooth service in a discoverable state.
 ```
-cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-accepter.sh > /dev/null
+cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-discoverable.sh > /dev/null
 #!/bin/bash
-# be sure bt is publicly discoverable
 hciconfig hci0 up || exit 1
 hciconfig hci0 piscan || exit 1
 hciconfig hci0 sspmode 1 || exit 1
 chmod go-r /etc/bt-accepter-jonh/bt-pins.txt
-
-# make bt pairable without authorization on this end.
-bt-agent -c DisplayOnly -p /etc/bt-accepter-jonh/bt-pins.txt
 __EOF__
-sudo chmod 755 /etc/bt-accepter-jonh/bt-accepter.sh
+sudo chmod 755 /etc/bt-accepter-jonh/bt-discoverable.sh
 
 cat <<__EOF__ | sudo tee /etc/bt-accepter-jonh/bt-discoverable-jonh.service > /dev/null
 [Unit]
@@ -125,13 +122,23 @@ cat << __EOF__ > .config/pulse/default.pa
 .include /etc/pulse/default.pa
 load-module module-null-sink sink_name=rtp
 load-module module-rtp-send source=rtp.monitor destination_ip=10.110.0.3 port=1760
-load-module module-rtp-send source=rtp.monitor
 set-default-sink rtp
 __EOF__
 ```
 ------------------------------------------------------------------------------
 broke here
 ------------------------------------------------------------------------------
+LEFT OFF trying to get user-slice pulse working again:
+- set auto console login. Plug in monitor and see if it worked.
+- nope it's stuck on some stupid config dialog
+- systemctl disable userconfig -- stopped tty0 from being overtaken
+  but still no autologin
+-the userconfig dialog set
+  * XKBVARIANT in /etc/default/keyboard,
+  * pi password in /etc/shadow
+  * and some only-ins, particularly getty.target.wants
+* looks like setting up /boot/userconf{.txt} will prevent userconfig
+  from hanging us up.
 
 * Configure pulseaudio to not suspend sinks on idle.
 (I don't know why it thinks the sink is idle when running the way I'm running it; this started once I moved from a user slice to a system unit.
@@ -214,7 +221,7 @@ Debugging tools I met along the way:
 
 * At setup
 ```
-sudo apt install -y tcpdump vim
+sudo apt install -y tcpdump vim lsof
 sudo mkdir /root/.ssh/
 sudo cp /home/pi/.ssh/authorized_keys /root/.ssh/
 ```

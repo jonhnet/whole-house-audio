@@ -1,0 +1,15 @@
+[Unit]
+Description=Bluetooth accepter agent (jonh)
+After=bluetooth.service persistent-pulseaudio.service
+StartLimitIntervalSec=0
+
+[Service]
+RuntimeDirectory=bt-accepter-jonh
+User=root
+ExecStart=bt-agent -c DisplayOnly -p /etc/bt-accepter-jonh/bt-pins.txt
+Restart=on-failure
+RestartSec=5
+KillSignal=9
+
+[Install]
+WantedBy=default.target
