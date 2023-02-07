@@ -17,7 +17,7 @@ hostnamectl set-hostname ${HOSTNAME}
 # https://www.raspberrypi.com/news/raspberry-pi-bullseye-update-april-2022/
 echo 'pi:*' > /boot/userconf.txt
 
-mkdir /root/.ssh/
+mkdir -p /root/.ssh/
 cp /home/pi/.ssh/authorized_keys /root/.ssh/
 
 apt update
