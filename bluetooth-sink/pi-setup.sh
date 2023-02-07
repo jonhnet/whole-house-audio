@@ -8,6 +8,8 @@ cd ${script_dir}
 
 source pi-setup-options.sh
 
+echo pwd is
+pwd
 
 # Do some rooty work
 sudo ./pi_setup_root.sh

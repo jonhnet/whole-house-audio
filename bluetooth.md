@@ -38,7 +38,7 @@ git clone https://github.com/jonhnet/whole-house-audio/
 
 * Execute the setup script
 ```
-sh whole-house-audio/bluetooth-sink/pi-setup.sh
+bash whole-house-audio/bluetooth-sink/pi-setup.sh
 ```
 
 * Install pulseaudio & bluetooth packages.
