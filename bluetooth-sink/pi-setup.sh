@@ -12,7 +12,7 @@ echo pwd is
 pwd
 
 # Do some rooty work
-sudo ./pi_setup_root.sh
+sudo bash ./pi-setup-root.sh
 
 # Configure pulseaudio to forward to RTP.
 #*IMPORTANT**: I added a destination_ip here, aiming the RTP hose at my
