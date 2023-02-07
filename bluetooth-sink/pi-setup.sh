@@ -15,7 +15,7 @@ sudo bash ./pi-setup-root.sh
 #*IMPORTANT**: I added a destination_ip here, aiming the RTP hose at my
 #audio server.
 ```
-cat << __EOF__ > .config/pulse/default.pa
+cat << __EOF__ > /home/pi/.config/pulse/default.pa
 .include /etc/pulse/default.pa
 load-module module-null-sink sink_name=rtp
 load-module module-rtp-send source=rtp.monitor destination_ip=${RTP_LISTENER_IP} port=1760
