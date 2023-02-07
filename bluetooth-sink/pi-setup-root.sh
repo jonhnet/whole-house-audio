@@ -44,3 +44,19 @@ systemctl daemon-reload
 systemctl enable /etc/bt-accepter-jonh/bt-accepter-jonh.service
 systemctl start bt-accepter-jonh
 
+# Set pi to log in at a text console automatically.
+# pulseaudio runs as pi, only when pi is logged in.
+# (I tried, OH HOW I TRIED, to get pulseaudio to run as root
+# or as user pi in a systemd Unit, with no luck. So I'm just
+# running it the way it wants to be run.)
+# Cribbed this from raspi-config: Boot Options / B2
+
+systemctl --quiet set-default multi-user.target
+
+USER=pi
+cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
+EOF
+
