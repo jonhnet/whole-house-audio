@@ -26,7 +26,7 @@ sudo ip link set wlan0 down
 
 * Install git
 ```
-sudo apt install git
+sudo apt update && sudo apt install -y git
 ```
 
 * Fetch my installer thingydoo

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-source pi-setup-options.sh
+# bail out if anything goes awry
+set -e
+
+. pi-setup-options.sh
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd ${SCRIPT_DIR}
-
-# bail out if anything goes awry
-set -e
 
 
 hostnamectl set-hostname ${HOSTNAME}

@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-source pi-setup-options.sh
+# bail out if anything goes awry
+set -e
+
+. pi-setup-options.sh
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd ${SCRIPT_DIR}
 
-# bail out if anything goes awry
-set -e
-
 
 # Do some rooty work
-sudo ./pi_setup_root-1.sh
+sudo ./pi_setup_root.sh
 
 # Configure pulseaudio to forward to RTP.
 #*IMPORTANT**: I added a destination_ip here, aiming the RTP hose at my
