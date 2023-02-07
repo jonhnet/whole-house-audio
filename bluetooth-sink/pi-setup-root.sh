@@ -15,7 +15,7 @@ hostnamectl set-hostname ${HOSTNAME}
 # (login via ssh only)
 # applies on next boot
 # https://www.raspberrypi.com/news/raspberry-pi-bullseye-update-april-2022/
-cat "pi:*" > /boot/userconf.txt
+echo 'pi:*' > /boot/userconf.txt
 
 mkdir /root/.ssh/
 cp /home/pi/.ssh/authorized_keys /root/.ssh/
