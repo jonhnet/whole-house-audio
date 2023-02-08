@@ -1,0 +1,14 @@
+[Unit]
+Description=RTP listener for snapcast (jonh)
+Wants=avahi-daemon.service
+After=network.target time-sync.target avahi-daemon.service snapserver-jonh.service
+StartLimitIntervalSec=1
+
+[Service]
+RuntimeDirectory=rtp-listener-jonh
+ExecStart=/etc/rtp-listener-jonh/rtp-listener.sh
+Restart=always
+# okay to restart enthusiastically
+
+[Install]
+WantedBy=multi-user.target
