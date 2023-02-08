@@ -4,19 +4,19 @@
 
 This recipe makes
 
-    * a whole-house audio system with any number of rooms
+* a whole-house audio system with any number of rooms
 
-    * multiple playlist "channels" so different users can have
-    their own settings (who even likes shuffle!?),
-    play different music in different rooms, or just
-    keep their own playlists paused while others are using the system.
+* multiple playlist "channels" so different users can have
+  their own settings (who even likes shuffle!?),
+  play different music in different rooms, or just
+  keep their own playlists paused while others are using the system.
 
-    * a bluetooth input path for playing live content off of phones or
-    tablets.
+* a bluetooth input path for playing live content off of phones or
+  tablets.
 
 ## Backstory
 
-Like any good internet recipe story, this one begins with my life story.
+Like any good internet recipe, this one begins with my life story.
 Skip ahead to the next header.
 
 Some years ago our Squeezebox player died. We kept the janky perl daemon and
@@ -40,6 +40,8 @@ pieces at each layer. Here are the choices I've put together so far.
 
 ## System Design
 
+![System Diagram](assets/system-diagram.svg)
+<img src="assets/system-diagram.svg">
 
 ## Bluetooth source
 
