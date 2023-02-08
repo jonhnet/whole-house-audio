@@ -1,4 +1,4 @@
-# Prepare the server
+# Install forwarding service on server
 
 **Set up a service on the audio server machine to
 receive UDP RTP and decode it into TCP for snapserver.**
@@ -14,3 +14,8 @@ On the audio server machine receiving the RTP:
 ```
 sudo setup.sh
 ```
+
+**End of this step.**
+Decoded audio should be streaming to the snapserver at port 1790.
+Use the snapserver web UI to select that stream for one of your playback
+devices and you should hear the music playing.

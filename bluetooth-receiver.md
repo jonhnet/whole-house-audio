@@ -53,7 +53,7 @@ bash whole-house-audio/bluetooth-sink/pi-setup.sh
 
 **End of this step.**
 Audio packets should now be spraying at your audio machine.
-Go install the [RTP forwarder service](./rtp-forwarder.md) on the audio machine.
+Proceed to install the [RTP forwarder service](./rtp-forwarder.md) on the audio machine.
 
 # Debugging tools
 
