@@ -18,7 +18,7 @@ So for each endpoint in my system, I used:
   bricks from ebay for $5/unit.
 
 * Speakers.
-  Our living room still has decades-old hifi speakers with 10" drivers.
+  Our living room still has decades-old hifi speakers with ten-inch drivers.
   We have in-wall speakers in the kitchen and bookshelf speakers in
   other rooms.  Monoprice is a good sources for decent inexpensive speakers.
 
@@ -59,6 +59,8 @@ It will construct the sdcard image and add the credentials you set up above.
 ```
 sudo hifiberry-setup/prepare-sdcard.py /dev/<sdx> pi4
 ```
+
+## Boot the pi.
 
 * Move the sdcard to the hat-wearing pi and let it boot. Give it a couple
 minutes to resize the filesystem and reboot and whatever.
