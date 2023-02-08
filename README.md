@@ -59,6 +59,10 @@ from a phone or tablit as if it were headphones.
 
 ## Set up snapserver and some clients
 
+[Set up snapserver](./snapserver.md)
+
+[Set up a snapcast client on a raspberry pi](./snapclient.md)
+
 ## Source music from local storage using mpd
 
 ## Source music from a Bluetooth source
