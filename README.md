@@ -45,7 +45,7 @@ pieces at each layer. Here are the choices I've put together so far.
 The hub of the system is the
 [snapcast audio server](https://github.com/badaix/snapcast).
 It provides time-synced audio to client devices from audio input streams
-arriving on Unix or TCP pipes.
+arriving on Unix fifos or TCP pipes.
 
 Music is supplied to snapserver from
 [mpd](https://github.com/MusicPlayerDaemon/MPD), a music server that
