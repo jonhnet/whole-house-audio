@@ -41,7 +41,6 @@ pieces at each layer. Here are the choices I've put together so far.
 ## System Design
 
 ![System Diagram](assets/system-diagram.svg)
-<img src="assets/system-diagram.svg">
 
 ## Bluetooth source
 
