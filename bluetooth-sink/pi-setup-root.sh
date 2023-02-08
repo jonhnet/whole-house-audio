@@ -8,6 +8,8 @@ cd ${script_dir}
 
 source pi-setup-options.sh
 
+# userconfig may decide to hang out in dkpg-reconfigure
+systemctl stop userconfig
 
 hostnamectl set-hostname ${HOSTNAME}
 
