@@ -65,6 +65,14 @@ from a phone or tablit as if it were headphones.
 
 ## Source music from local storage using mpd
 
+[Set up the music player daemon on your server](./mpd.md)
+
+[Set up the music player web UI](./mympd.md)
+
+## Add extra "stations"
+
+[Add extra mpd channels](./mpd-channels.md)
+
 ## Source music from a Bluetooth source
 
 [Configure your snapserver to accept a TCP stream](snapserver-bluetooth-stream.md)
