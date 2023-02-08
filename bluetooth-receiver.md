@@ -49,9 +49,11 @@ git clone https://github.com/jonhnet/whole-house-audio/
 bash whole-house-audio/bluetooth-sink/pi-setup.sh
 ```
 
-* Pair to the newly-advertised bluetooth service and start playing.
+* Pair to the newly-advertised bluetooth service and start playing some music.
 
-**The End.**
+**End of this step.**
+Audio packets should now be spraying at your audio machine.
+Go install the [RTP forwarder service](./rtp-forwarder.md) on the audio machine.
 
 # Debugging tools
 
