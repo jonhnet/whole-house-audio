@@ -1,11 +1,14 @@
-# Prepare the server
+# Bluetooth Receiver 
 
-TODO
-
-# Prepare a pi
+**Set up a raspberry pi to accept Bluetooth connection and**
+**forward audio via RTP to the audio server machine.**
 
 Here are the steps I took from blank SD card to a pi that acts as a bluetooth
 -> rtp forwarder.
+
+I used a Pi 3B. Note that I disabled wifi and used wired ethernet due to
+reports (and experience) that bluetooth and wifi don't get along well on
+this device. Perhaps the 4 is better; your mileage may vary.
 
 * Use rpi-imager on a host computer to write Bullseye Raspbian to a fresh SD card.
   I use the gear (advanced settings) icon to prep the card with an ssh pubkey
@@ -44,15 +47,6 @@ bash whole-house-audio/bluetooth-sink/pi-setup.sh
 * Pair to the newly-advertised bluetooth service and start playing.
 
 The End.
-
-------------------------------------------------------------------------------
-broke here
-------------------------------------------------------------------------------
-
-* Configure pulseaudio to not exit on idle, since that closes Bluetooth connection.
-
-sudo 'echo exit-idle-time = -1 >> /etc/pulse/daemon.conf'
-
 
 #### debugging tools
 
