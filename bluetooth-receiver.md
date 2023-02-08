@@ -6,6 +6,11 @@
 Here are the steps I took from blank SD card to a pi that acts as a bluetooth
 -> rtp forwarder.
 
+I did this with a fresh pi, not reusing one of my hifiberry pis, because
+hifiberry is running a custom distribution without debian package management.
+Combining the two would probably be best done by installing the
+snapcast receiver via debian rather than with the hifiberry distro.
+
 I used a Pi 3B. Note that I disabled wifi and used wired ethernet due to
 reports (and experience) that bluetooth and wifi don't get along well on
 this device. Perhaps the 4 is better; your mileage may vary.
