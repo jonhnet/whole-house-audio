@@ -25,7 +25,6 @@ cp /home/pi/.ssh/authorized_keys /root/.ssh/
 apt update
 
 # Upgrade machine
-# XXX slow; restore once testing complete
 apt -y upgrade
 
 cp /boot/config.txt /boot/config.txt-bak

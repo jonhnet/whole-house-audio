@@ -21,3 +21,5 @@ load-module module-null-sink sink_name=rtp
 load-module module-rtp-send source=rtp.monitor destination_ip=${RTP_LISTENER_IP} port=1760
 set-default-sink rtp
 __EOF__
+
+sudo reboot
