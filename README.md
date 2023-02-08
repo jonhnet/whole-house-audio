@@ -44,6 +44,8 @@ pieces at each layer. Here are the choices I've put together so far.
 
 ## Bluetooth source
 
+[Configure your snapserver to accept a TCP stream](snapserver-bluetooth-stream.md)
+
 [Set up a pi to forward bluetooth audio to your server as RTP](bluetooth-receiver.md)
 
 [Set up a service to convert RTP into snapserver TCP](rtp-forwarder.md)
