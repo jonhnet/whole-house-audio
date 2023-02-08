@@ -18,8 +18,15 @@ mkdir -p /home/pi/.config/pulse/
 cat << __EOF__ > /home/pi/.config/pulse/default.pa
 .include /etc/pulse/default.pa
 load-module module-null-sink sink_name=rtp
+# this line won't do anythin because it tries to run before network is up:
 load-module module-rtp-send source=rtp.monitor destination_ip=${RTP_LISTENER_IP} port=1760
 set-default-sink rtp
 __EOF__
+
+# Enable the little service that patches up the pulseaudio rtp module
+# once the network is running.
+# I left it in the git dir because it has a dependency on the pi-setup-options
+# file. Meh.
+systemctl --user enable /home/pi/whole-house-audio/bluetooth-sink/pulse-delayed-rtp.service
 
 sudo reboot
