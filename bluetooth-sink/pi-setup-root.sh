@@ -40,11 +40,21 @@ sudo apt install -y tcpdump vim lsof
 
 # Create a service to automatically accept Bluetooth connections without needing to accept the PIN on the pi side
 mkdir -p /etc/bt-accepter-jonh
-cp bt-accepter-jonh.service bt-pins.txt /etc/bt-accepter-jonh
+cp bt-accepter-jonh.service bt-pins.txt /etc/bt-accepter-jonh/
+chmod go-r /etc/bt-accepter-jonh/bt-pins.txt
 
 systemctl daemon-reload
 systemctl enable /etc/bt-accepter-jonh/bt-accepter-jonh.service
 systemctl start bt-accepter-jonh
+
+# Create a service to set the Bluetooth endpoint to be discoverable.
+mkdir -p /etc/bt-accepter-jonh
+cp bt-discoverable-jonh.service bt-discoverable.sh /etc/bt-accepter-jonh/
+chmod 755 /etc/bt-accepter-jonh/bt-discoverable.sh
+
+systemctl daemon-reload
+systemctl enable /etc/bt-accepter-jonh/bt-discoverable-jonh.service
+systemctl start bt-discoverable-jonh
 
 # Set pi to log in at a text console automatically.
 # pulseaudio runs as pi, only when pi is logged in.
@@ -61,4 +71,6 @@ cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
 ExecStart=
 ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
 EOF
-
+systemctl daemon-reload
+systemctl enable getty@tty1.service # probably a noop
+systemctl restart getty@tty1.service

@@ -1,0 +1,17 @@
+[Unit]
+Description=Bluetooth discoverable agent (jonh)
+After=bluetooth.service persistent-pulseaudio.service
+StartLimitIntervalSec=0
+StartLimitBurst=5
+
+[Service]
+RuntimeDirectory=bt-discoverable-jonh
+User=root
+ExecStart=/etc/bt-accepter-jonh/bt-discoverable.sh
+# Just re-run every 5 seconds for eternity because I can't figure out
+# how to get it to run only at the RIGHT time. Argh.
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
