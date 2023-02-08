@@ -8,6 +8,8 @@ can fit in a tiny space -- like right on top of a pi!
 
 So for each endpoint in my system, I used:
 
+* foo
+
     * A raspberry pi 4 (which I hope can be purchased again someday 🙄)
 
     * [HiFiBerry Amp2](https://www.hifiberry.com/shop/boards/hifiberry-amp2/).
