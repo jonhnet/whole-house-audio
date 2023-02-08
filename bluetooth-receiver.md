@@ -3,6 +3,9 @@
 **Set up a raspberry pi to accept Bluetooth connection and**
 **forward audio via RTP to the audio server machine.**
 
+Note that this is nice for listening to music. The high latency will make it
+unusable for watching videos.
+
 Here are the steps I took from blank SD card to a pi that acts as a bluetooth
 -> rtp forwarder.
 
