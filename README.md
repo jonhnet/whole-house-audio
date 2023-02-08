@@ -75,6 +75,9 @@ from a phone or tablit as if it were headphones.
 
 ## Source music from a Bluetooth source
 
+While Bluetooth is nice for listening to music, the high latency will make it
+unusable for watching videos.
+
 [Configure your snapserver to accept a TCP stream](snapserver-bluetooth-stream.md)
 
 [Set up a pi to forward bluetooth audio to your server as RTP](bluetooth-receiver.md)
