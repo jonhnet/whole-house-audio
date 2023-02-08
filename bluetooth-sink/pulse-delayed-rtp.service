@@ -2,6 +2,12 @@
 Description=Enable PulseAudio RTP After Network
 Requires=pulseaudio.service
 ConditionUser=!root
+# Ha ha! You fool! You probably thought you could depend on
+# the system service! But it is not so.
+# https://wiki.archlinux.org/title/systemd/User
+# "User units can not reference or depend on system units or units of other users."
+# So I guess instead we'll just retry every five seconds and hope for
+# the best. Eyeroll.
 After=network-online.target
 Wants=network-online.target
 
@@ -11,6 +17,7 @@ LockPersonality=yes
 MemoryDenyWriteExecute=yes
 NoNewPrivileges=yes
 Restart=on-failure
+RestartSec=5
 RestrictNamespaces=yes
 SystemCallArchitectures=native
 SystemCallFilter=@system-service

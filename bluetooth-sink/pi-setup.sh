@@ -27,6 +27,7 @@ __EOF__
 # once the network is running.
 # I left it in the git dir because it has a dependency on the pi-setup-options
 # file. Meh.
+chmod 755 /home/pi/whole-house-audio/bluetooth-sink/pulse-delayed-rtp.sh
 systemctl --user enable /home/pi/whole-house-audio/bluetooth-sink/pulse-delayed-rtp.service
 
 sudo reboot
