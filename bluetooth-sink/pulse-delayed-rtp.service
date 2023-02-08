@@ -1,0 +1,21 @@
+[Unit]
+Description=Enable PulseAudio RTP After Network
+Requires=pulseaudio.service
+ConditionUser=!root
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/home/pi/whole-house-audio/bluetooth-sink/pulse-delayed-rtp.sh
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+Restart=on-failure
+RestrictNamespaces=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+Type=oneshot
+UMask=0077
+
+[Install]
+WantedBy=default.target
