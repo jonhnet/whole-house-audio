@@ -8,21 +8,19 @@ can fit in a tiny space -- like right on top of a pi!
 
 So for each endpoint in my system, I used:
 
-* foo
+* A raspberry pi 4 (which I hope can be purchased again someday 🙄)
 
-    * A raspberry pi 4 (which I hope can be purchased again someday 🙄)
+* [HiFiBerry Amp2](https://www.hifiberry.com/shop/boards/hifiberry-amp2/).
 
-    * [HiFiBerry Amp2](https://www.hifiberry.com/shop/boards/hifiberry-amp2/).
+* A box for the pi and amp. [I 3D printed mine.](https://www.thingiverse.com/thing:2781614)
 
-    * A box for the pi and amp. [I 3D printed mine.](https://www.thingiverse.com/thing:2781614)
+* A 60-90W laptop power supply. I bought a lot of old-style Thinkpad power
+  bricks from ebay for $5/unit.
 
-    * A 60-90W laptop power supply. I bought a lot of old-style Thinkpad power
-      bricks from ebay for $5/unit.
-
-    * Speakers.
-      Our living room still has decades-old hifi speakers with 10" drivers.
-      We have in-wall speakers in the kitchen and bookshelf speakers in
-      other rooms.  Monoprice is a good sources for decent inexpensive speakers.
+* Speakers.
+  Our living room still has decades-old hifi speakers with 10" drivers.
+  We have in-wall speakers in the kitchen and bookshelf speakers in
+  other rooms.  Monoprice is a good sources for decent inexpensive speakers.
 
 You could certainly use other DAC and amp combinations.
 You can even use the terrible 8-bit DAC that's built into the pi; I did
