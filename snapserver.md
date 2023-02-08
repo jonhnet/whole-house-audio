@@ -52,6 +52,7 @@ sudo systemd restart snapserver
 
 * Connect to the snapserver web UI on your server at port 1780.
 Click the "play" button in the upper right corner of the web UI.
+
 ![Play Button](assets/snapcast-pay-icon.png)
 
 * To confirm it's working, play a song. On the server, stream an mp3 into the snapcast fifo:
