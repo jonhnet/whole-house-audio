@@ -42,7 +42,26 @@ pieces at each layer. Here are the choices I've put together so far.
 
 ![System Diagram](assets/system-diagram.svg)
 
-## Bluetooth source
+The hub of the system is the
+[snapcast audio server](https://github.com/badaix/snapcast).
+It provides time-synced audio to client devices from audio input streams
+arriving on Unix or TCP pipes.
+
+Music is supplied to snapserver from
+[mpd](https://github.com/MusicPlayerDaemon/MPD), a music server that
+scans and indexes music files in local server storage.
+Users control the mpd playlist via
+[mympd](https://github.com/jcorporation/myMPD),
+a web-based UI.
+
+Music can also be streamed in via Bluetooth, connecting to the system
+from a phone or tablit as if it were headphones.
+
+## Set up snapserver and some clients
+
+## Source music from local storage using mpd
+
+## Source music from a Bluetooth source
 
 [Configure your snapserver to accept a TCP stream](snapserver-bluetooth-stream.md)
 
