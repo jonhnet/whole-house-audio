@@ -24,7 +24,7 @@ apt update
 
 # Upgrade machine
 # XXX slow; restore once testing complete
-#apt -y upgrade
+apt -y upgrade
 
 cp /boot/config.txt /boot/config.txt-bak
 
