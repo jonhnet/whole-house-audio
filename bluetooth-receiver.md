@@ -46,9 +46,9 @@ bash whole-house-audio/bluetooth-sink/pi-setup.sh
 
 * Pair to the newly-advertised bluetooth service and start playing.
 
-The End.
+**The End.**
 
-#### debugging tools
+# Debugging tools
 
 Debugging tools I met along the way:
 
@@ -70,18 +70,14 @@ hciconfig hci0 sspmode
 pactl list short sinks
 ```
 
-#### broken stuff
+## Sources
+* [bluez packages](https://www.instructables.com/Turn-your-Raspberry-Pi-into-a-Portable-Bluetooth-A/)
 
-* Even when I get the thing working, it randomly suspends itself.
+* [Accepting bluetooth pairings](https://raspberrypi.stackexchange.com/questions/50496/automatically-accept-bluetooth-pairings)
 
-* rtp listener on host is flaky as heck, needs restarts, needs ffmpeg process
-  to be manually killed.
+# Broken stuff
 
 * bt-discoverable-jonh.service re-running every 5s forever is a hack and
   a half, since I couldn't get the dependencies right for the discoverability
   to stay put.
 
-#### sources
-* [bluez packages](https://www.instructables.com/Turn-your-Raspberry-Pi-into-a-Portable-Bluetooth-A/)
-
-* [Accepting bluetooth pairings](https://raspberrypi.stackexchange.com/questions/50496/automatically-accept-bluetooth-pairings)
