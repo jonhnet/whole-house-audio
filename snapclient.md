@@ -35,7 +35,9 @@ I built my devices starting with HiFiBerry's OS distribution.
 I used a script to set the SD card up for complete automation.
 
 * On a laptop or whatever machine is going to write the SD card,
-download HiFiBerryOS appropriate for your pi model.
+download the
+[HiFiBerryOS image](https://www.hifiberry.com/hifiberryos/)
+appropriate for your pi model.
 
 ```
 mkdir images-deleteme
