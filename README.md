@@ -36,7 +36,7 @@ couple years, but hopefully the situation returns to normal soon.
 
 This system is exactly the sort of thing that appeals to me: open source
 everything. But of course that means you get to (have to) choose bits and
-pieces at each layer. Here are the choices I've put together so far.
+pieces at each layer. Here are the choices I've put together.
 
 ## System Design
 
