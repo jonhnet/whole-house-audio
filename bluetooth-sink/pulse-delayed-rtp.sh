@@ -14,9 +14,7 @@ cd ${script_dir}
 source pi-setup-options.sh
 
 pactl list modules short | grep -q rtp.monitor
-if [[ $? == 0 ]]; then
-#echo module present; do nothing
-else
+if [[ $? != 0 ]]; then
 #echo module absent; poke it in
 pactl load-module module-rtp-send source=rtp.monitor destination_ip=${RTP_LISTENER_IP} port=1760
 fi
