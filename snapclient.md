@@ -15,12 +15,12 @@ So for each endpoint in my system, I used:
     * A box for the pi and amp. [I 3D printed mine.](https://www.thingiverse.com/thing:2781614)
 
     * A 60-90W laptop power supply. I bought a lot of old-style Thinkpad power
-    bricks from ebay for $5/unit.
+      bricks from ebay for $5/unit.
 
     * Speakers.
-    Our living room still has decades-old hifi speakers with 10" drivers.
-    We have in-wall speakers in the kitchen and bookshelf speakers in
-    other rooms.  Monoprice is a good sources for decent inexpensive speakers.
+      Our living room still has decades-old hifi speakers with 10" drivers.
+      We have in-wall speakers in the kitchen and bookshelf speakers in
+      other rooms.  Monoprice is a good sources for decent inexpensive speakers.
 
 You could certainly use other DAC and amp combinations.
 You can even use the terrible 8-bit DAC that's built into the pi; I did
